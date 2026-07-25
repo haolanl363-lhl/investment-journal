@@ -1,137 +1,136 @@
-let records = loadRecords();
+import { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import Diary from "./components/Diary";
+import Market from "./components/Market";
+import Analysis from "./components/Analysis";
+import AIReview from "./components/AIReview";
+
+export default function App() {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const [page, setPage] = useState("home");
+
+
+  function changePage(name){
+    setPage(name);
+    setMenuOpen(false);
+  }
+
+
+  return (
+    <div className="app">
+
+
+      {/* 左侧菜单 */}
+      <Sidebar
+        open={menuOpen}
+        close={()=>setMenuOpen(false)}
+        changePage={changePage}
+      />
+
+
+      {/* 遮罩 */}
+      {menuOpen && (
+        <div
+          className="mask"
+          onClick={()=>setMenuOpen(false)}
+        ></div>
+      )}
 
 
 
-function addInvestment(){
+      <main>
 
 
-let stock =
-document.getElementById("stock").value;
+        {/* 顶部 */}
+        <header>
+
+          <button
+            className="menuBtn"
+            onClick={()=>setMenuOpen(true)}
+          >
+            ☰
+          </button>
 
 
-let buyPrice =
-Number(document.getElementById("buyPrice").value);
+          <h1>
+            📈 投资日记
+          </h1>
+
+        </header>
 
 
 
-let currentPrice =
-Number(document.getElementById("currentPrice").value);
+
+        {/* 页面内容 */}
+
+        {
+          page==="home" &&
+          <>
+
+          <section className="card hero">
+
+            <h2>
+              📖 今日投资日记
+            </h2>
+
+            <p>
+              记录想法，而不是记录价格
+            </p>
+
+          </section>
+
+
+          <Market />
+
+          </>
+
+        }
 
 
 
-let quantity =
-Number(document.getElementById("quantity").value);
+        {
+          page==="diary" &&
+          <Diary />
+        }
 
 
 
-if(!stock||!buyPrice||!currentPrice||!quantity){
+        {
+          page==="analysis" &&
+          <Analysis />
+        }
 
-alert("请填写完整");
 
-return;
 
+        {
+          page==="ai" &&
+          <AIReview />
+        }
+
+
+
+        {
+          page==="wrong" &&
+          <section className="card">
+
+            <h2>
+              ❌ 错题本
+            </h2>
+
+            <p>
+              暂无错题记录
+            </p>
+
+          </section>
+        }
+
+
+
+      </main>
+
+
+    </div>
+  )
 }
-
-
-
-records.unshift({
-
-stock,
-
-buyPrice,
-
-currentPrice,
-
-quantity,
-
-date:new Date()
-.toLocaleDateString()
-
-});
-
-
-
-saveRecords(records);
-
-
-renderRecords();
-
-renderDashboard();
-
-
-}
-
-
-
-
-function renderRecords(){
-
-
-let box=document.getElementById("records");
-
-
-if(!box)return;
-
-
-
-box.innerHTML="";
-
-
-
-records.forEach(item=>{
-
-
-let result=
-calculateInvestment(item);
-
-
-
-box.innerHTML+=`
-
-<div class="card">
-
-
-<h3>
-${item.stock}
-</h3>
-
-
-<p>
-成本：¥${result.cost}
-</p>
-
-
-<p>
-当前：¥${result.value}
-</p>
-
-
-<p>
-盈亏：¥${result.profit}
-</p>
-
-
-<p>
-收益率：
-${result.rate}
-</p>
-
-
-</div>
-
-`;
-
-});
-
-
-}
-
-
-
-window.onload=function(){
-
-renderRecords();
-
-renderDashboard();
-
-};
