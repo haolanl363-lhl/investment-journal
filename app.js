@@ -1,184 +1,137 @@
-// ==========================
-// 投资日记主程序
-// ==========================
-
-
-// 获取当前记录
-
 let records = loadRecords();
 
 
 
-// 如果第一次打开，没有数据
-
-if(records.length === 0){
-
-    records = investmentRecords;
-
-    saveRecords(records);
-
-}
-
-
-
-// 添加投资记录
-
 function addInvestment(){
 
 
-    let stock =
-    document.getElementById("stock").value;
+let stock =
+document.getElementById("stock").value;
 
 
-    let buyPrice =
-    Number(document.getElementById("buyPrice").value);
-
-
-    let currentPrice =
-    Number(document.getElementById("currentPrice").value);
-
-
-    let quantity =
-    Number(document.getElementById("quantity").value);
+let buyPrice =
+Number(document.getElementById("buyPrice").value);
 
 
 
-    if(!stock || !buyPrice || !currentPrice || !quantity){
-
-        alert("请填写完整信息");
-
-        return;
-
-    }
+let currentPrice =
+Number(document.getElementById("currentPrice").value);
 
 
 
-    let newRecord = {
-
-
-        stock: stock,
-
-        buyPrice: buyPrice,
-
-        currentPrice: currentPrice,
-
-        quantity: quantity,
-
-        date: new Date()
-        .toLocaleDateString()
-
-
-    };
+let quantity =
+Number(document.getElementById("quantity").value);
 
 
 
-    records.unshift(newRecord);
+if(!stock||!buyPrice||!currentPrice||!quantity){
+
+alert("请填写完整");
+
+return;
+
+}
 
 
 
-    saveRecords(records);
+records.unshift({
+
+stock,
+
+buyPrice,
+
+currentPrice,
+
+quantity,
+
+date:new Date()
+.toLocaleDateString()
+
+});
 
 
 
-    renderRecords();
+saveRecords(records);
 
 
+renderRecords();
 
-    alert("投资记录保存成功");
+renderDashboard();
 
 
 }
 
 
 
-
-// 显示记录
 
 function renderRecords(){
 
 
-    let box =
-    document.getElementById("records");
+let box=document.getElementById("records");
 
 
-    box.innerHTML="";
-
-
-
-    records.forEach(item=>{
-
-
-        let result =
-        calculateInvestment(item);
+if(!box)return;
 
 
 
-        box.innerHTML += `
-
-
-        <div class="card">
-
-
-        <h3>
-        ${item.stock}
-        </h3>
-
-
-        <p>
-        买入价格：
-        ${item.buyPrice}
-        </p>
-
-
-        <p>
-        当前价格：
-        ${item.currentPrice}
-        </p>
-
-
-        <p>
-        数量：
-        ${item.quantity}
-        </p>
+box.innerHTML="";
 
 
 
-        <p>
-        盈亏：
-        ${result.profit}
-        </p>
+records.forEach(item=>{
 
 
-        <p>
-        收益率：
-        ${result.rate}
-        </p>
+let result=
+calculateInvestment(item);
 
 
 
-        <small>
-        日期：
-        ${item.date}
-        </small>
+box.innerHTML+=`
+
+<div class="card">
 
 
-        </div>
+<h3>
+${item.stock}
+</h3>
 
 
-        `;
+<p>
+成本：¥${result.cost}
+</p>
 
 
-    });
+<p>
+当前：¥${result.value}
+</p>
+
+
+<p>
+盈亏：¥${result.profit}
+</p>
+
+
+<p>
+收益率：
+${result.rate}
+</p>
+
+
+</div>
+
+`;
+
+});
 
 
 }
 
 
 
-// 页面打开自动加载
-
 window.onload=function(){
 
-    renderRecords();
+renderRecords();
+
+renderDashboard();
 
 };
