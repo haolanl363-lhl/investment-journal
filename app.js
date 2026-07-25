@@ -1,38 +1,52 @@
-// 投资日记 app.js 稳定版
-
 const app = document.getElementById("app");
 
-let records = JSON.parse(localStorage.getItem("investmentRecords")) || [];
 
-let todayMarket = "上涨";
+let records = JSON.parse(localStorage.getItem("records")) || [];
 
 
-// 保存数据
-function saveRecords(){
+function save(){
     localStorage.setItem(
-        "investmentRecords",
+        "records",
         JSON.stringify(records)
     );
 }
 
 
-// 首页
-function home(){
+function render(){
 
 app.innerHTML = `
 
-<section class="card">
+<div class="page">
 
-<h1>📖 今日投资日记</h1>
+
+<header>
+<button class="menu" onclick="openMenu()">☰</button>
+<h1>📈 投资日记</h1>
+</header>
+
+
+<div class="card">
+
+<h2>📖 今日投资日记</h2>
 
 <p>
 记录想法，而不是记录价格
 </p>
 
-</section>
+
+<textarea id="note"
+placeholder="今天市场发生了什么？你的想法？"></textarea>
 
 
-<section class="card">
+<button onclick="addRecord()">
+保存记录
+</button>
+
+</div>
+
+
+
+<div class="card">
 
 <h2>今天的市场</h2>
 
@@ -53,234 +67,157 @@ app.innerHTML = `
 下跌
 </button>
 
-
 </div>
 
 
-<p>
-当前状态：
-<b>${todayMarket}</b>
+<p id="market">
+今天状态：未选择
 </p>
 
 
-</section>
+</div>
 
 
 
-<section class="card">
-
-<h2>添加投资记录</h2>
-
-
-<input id="stock"
-placeholder="股票名称">
-
-
-<input id="reason"
-placeholder="买入理由">
-
-
-<button onclick="addRecord()">
-保存记录
-</button>
-
-
-</section>
-
-
-
-<section class="card">
+<div class="card">
 
 <h2>历史记录</h2>
 
-
-<div id="list">
-
-${renderRecords()}
+<div id="history">
 
 </div>
 
 
-</section>
+</div>
+
+
+
+</div>
+
+
+
+<div id="drawer">
+
+<h2>📈 投资日记</h2>
+
+<p onclick="home()">🏠 首页</p>
+
+<p>📊 投资分析</p>
+
+<p onclick="scrollDiary()">
+📖 投资日记
+</p>
+
+<p>❌ 错题本</p>
+
+<p>🧠 AI复盘</p>
+
+
+</div>
+
 
 `;
 
-}
-
-
-
-// 设置市场状态
-
-function setMarket(value){
-
-todayMarket=value;
-
-home();
+showHistory();
 
 }
 
 
-
-// 添加记录
 
 function addRecord(){
 
-let stock=
-document.getElementById("stock").value;
+let text=document.getElementById("note").value;
 
 
-let reason=
-document.getElementById("reason").value;
-
-
-
-if(!stock){
-
-alert("请输入股票名称");
-
-return;
-
-}
-
+if(!text)return;
 
 
 records.push({
 
-stock,
-reason,
-date:new Date().toLocaleString()
+date:new Date().toLocaleString(),
+
+text:text
 
 });
 
 
-saveRecords();
+save();
 
 
-home();
-
-
-}
-
-
-
-// 显示记录
-
-function renderRecords(){
-
-
-if(records.length===0){
-
-return "暂无记录";
+render();
 
 }
 
 
 
-return records.map((item,index)=>{
+function showHistory(){
+
+let box=document.getElementById("history");
 
 
-return `
+if(!box)return;
+
+
+box.innerHTML=records.map(
+r=>`
 
 <div class="record">
 
-<h3>${item.stock}</h3>
+<b>${r.date}</b>
 
-<p>${item.reason}</p>
-
-<small>
-${item.date}
-</small>
-
-
-<button onclick="deleteRecord(${index})">
-删除
-</button>
-
+<p>${r.text}</p>
 
 </div>
 
-
 `
-
-
-}).join("");
+).join("");
 
 }
 
 
 
-// 删除
+function setMarket(v){
 
-function deleteRecord(index){
-
-records.splice(index,1);
-
-saveRecords();
-
-home();
+document.getElementById("market")
+.innerHTML=
+"今天状态："+v;
 
 }
 
 
-
-// 菜单
 
 function openMenu(){
 
-let menu=document.getElementById("menu");
+let d=document.getElementById("drawer");
 
-
-if(menu){
-
-menu.classList.add("show");
-
-}
+d.classList.toggle("show");
 
 }
 
 
 
+function scrollDiary(){
 
-function closeMenu(){
+window.scrollTo({
 
-let menu=document.getElementById("menu");
+top:0,
 
+behavior:"smooth"
 
-if(menu){
-
-menu.classList.remove("show");
-
-}
+});
 
 }
 
 
 
-// 页面启动
+function home(){
 
-window.onload=function(){
-
-home();
-
-
-let btn=document.getElementById("menuBtn");
-
-
-if(btn){
-
-btn.onclick=openMenu;
+document
+.getElementById("drawer")
+.classList.remove("show");
 
 }
 
 
-let close=document.getElementById("closeMenu");
 
-
-if(close){
-
-close.onclick=closeMenu;
-
-}
-
-
-};
+render();
