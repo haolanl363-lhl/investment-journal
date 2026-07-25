@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI投资复盘</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>
+🧠 AI投资复盘
+</h1>
+
+<p>
+分析你的投资纪律与情绪
+</p>
+
+</header>
+
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<h2>
+今日交易复盘
+</h2>
+
+
+<textarea id="reason"
+placeholder="为什么买入？例如：看到上涨趋势，认为未来增长空间大">
+</textarea>
+
+
+
+<textarea id="plan"
+placeholder="你的原计划是什么？是否按照计划执行？">
+</textarea>
+
+
+
+
+<textarea id="emotion"
+placeholder="交易时你的情绪如何？例如：兴奋、恐惧、焦虑">
+</textarea>
+
+
+
+<button onclick="startReview()">
+
+开始AI分析
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+分析结果
+</h2>
+
+
+<div id="result">
+
+等待分析...
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<script src="ai-review.js"></script>
+
+
+</body>
+
+</html>
