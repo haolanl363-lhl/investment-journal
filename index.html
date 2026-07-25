@@ -5,234 +5,25 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>投资日记</title>
+<title>
+投资日记
+</title>
 
 
-<style>
-
-*{
-box-sizing:border-box;
-}
-
-
-body{
-
-margin:0;
-
-background:#f5f5f5;
-
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Microsoft YaHei",
-sans-serif;
-
-color:#222;
-
-}
-
-
-/* 左侧菜单 */
-
-.drawer{
-
-position:fixed;
-
-top:0;
-
-left:-270px;
-
-width:270px;
-
-height:100vh;
-
-background:white;
-
-z-index:1001;
-
-padding:30px 20px;
-
-transition:.3s;
-
-box-shadow:2px 0 15px rgba(0,0,0,.15);
-
-}
-
-
-.drawer.active{
-
-left:0;
-
-}
-
-
-
-.drawer h2{
-
-font-size:22px;
-
-margin-bottom:30px;
-
-}
-
-
-
-.menu{
-
-padding:15px 5px;
-
-font-size:17px;
-
-cursor:pointer;
-
-}
-
-
-
-.menu:active{
-
-background:#eee;
-
-}
-
-
-
-/* 遮罩 */
-
-
-.mask{
-
-position:fixed;
-
-left:0;
-
-top:0;
-
-width:100%;
-
-height:100%;
-
-
-background:rgba(0,0,0,.3);
-
-display:none;
-
-
-z-index:1000;
-
-}
-
-
-
-.mask.active{
-
-display:block;
-
-}
-
-
-
-/* 主页面 */
-
-
-.main{
-
-padding:25px;
-
-}
-
-
-.top-title{
-
-font-size:32px;
-
-font-weight:bold;
-
-margin-bottom:35px;
-
-}
-
-
-
-.card{
-
-background:white;
-
-border-radius:25px;
-
-padding:25px;
-
-margin-bottom:25px;
-
-}
-
-
-
-.card h1{
-
-font-size:30px;
-
-}
-
-
-.card p{
-
-font-size:18px;
-
-color:#666;
-
-}
-
-
-/* 按钮 */
-
-
-.btn{
-
-padding:12px 25px;
-
-border:none;
-
-border-radius:20px;
-
-margin-right:10px;
-
-font-size:16px;
-
-cursor:pointer;
-
-background:#eee;
-
-}
-
-
-
-.btn.active{
-
-background:#1677ff;
-
-color:white;
-
-}
-
-
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 
 </head>
 
 
-
 <body>
 
 
+<!-- 左侧抽屉菜单 -->
 
-<!-- 左侧菜单 -->
-
-<div class="drawer" id="drawer">
+<div id="drawer" class="drawer">
 
 
 <h2>
@@ -240,27 +31,27 @@ color:white;
 </h2>
 
 
-<div class="menu">
+<div class="menu-item" onclick="showPage('home')">
 🏠 首页
 </div>
 
 
-<div class="menu">
+<div class="menu-item" onclick="showPage('analysis')">
 📊 投资分析
 </div>
 
 
-<div class="menu">
+<div class="menu-item" onclick="showPage('diary')">
 📖 投资日记
 </div>
 
 
-<div class="menu">
+<div class="menu-item" onclick="showPage('mistake')">
 ❌ 错题本
 </div>
 
 
-<div class="menu">
+<div class="menu-item" onclick="showPage('ai')">
 🧠 AI复盘
 </div>
 
@@ -269,60 +60,45 @@ color:white;
 
 
 
-<div class="mask" id="mask"></div>
+
+<!-- 遮罩 -->
+
+<div id="mask"></div>
 
 
+
+
+
+<!-- 主页面 -->
 
 
 <div class="main">
 
 
-<div class="top-title">
-
-📈 投资日记
-
-</div>
+<header>
 
 
+<button 
+class="menu-btn"
+onclick="openMenu()">
 
-<div class="card">
+☰
+
+</button>
 
 
 <h1>
-📖 今日投资日记
+投资日记
 </h1>
 
 
-<p>
-记录想法，而不是记录价格
-</p>
-
-
-</div>
+</header>
 
 
 
-<div class="card">
+<!-- 内容区域 -->
 
-
-<h2>
-今天的市场
-</h2>
-
-
-<button class="btn">
-上涨
-</button>
-
-
-<button class="btn">
-震荡
-</button>
-
-
-<button class="btn">
-下跌
-</button>
+<div id="app">
 
 
 </div>
@@ -334,121 +110,10 @@ color:white;
 
 
 
-<script>
-
-
-const drawer =
-document.getElementById("drawer");
-
-
-const mask =
-document.getElementById("mask");
-
-
-
-function openMenu(){
-
-drawer.classList.add("active");
-
-mask.classList.add("active");
-
-}
-
-
-
-function closeMenu(){
-
-drawer.classList.remove("active");
-
-mask.classList.remove("active");
-
-}
-
-
-
-mask.onclick=closeMenu;
-
-
-
-
-// 左滑手势
-
-
-let startX=0;
-
-
-
-document.addEventListener(
-"touchstart",
-function(e){
-
-startX=e.touches[0].clientX;
-
-}
-
-);
-
-
-
-document.addEventListener(
-"touchend",
-function(e){
-
-
-let endX=e.changedTouches[0].clientX;
-
-
-if(startX<40 && endX-startX>80){
-
-openMenu();
-
-}
-
-
-
-if(startX>270 && startX-endX>80){
-
-closeMenu();
-
-}
-
-
-}
-
-);
-
-
-
-// 按钮选择
-
-
-let buttons=document.querySelectorAll(".btn");
-
-
-buttons.forEach(btn=>{
-
-
-btn.onclick=function(){
-
-
-buttons.forEach(b=>
-b.classList.remove("active")
-);
-
-
-btn.classList.add("active");
-
-
-}
-
-
-});
-
-
-</script>
-
+<script src="app.js"></script>
 
 
 </body>
+
 
 </html>
