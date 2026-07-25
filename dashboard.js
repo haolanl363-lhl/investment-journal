@@ -1,149 +1,87 @@
-// ==========================
-// 投资仪表盘统计
-// ==========================
-
-
-function getDashboardData(){
-
-
-    let records = loadRecords();
-
-
-    let totalCost = 0;
-
-    let totalValue = 0;
-
-
-
-    records.forEach(item=>{
-
-
-        totalCost += 
-        item.buyPrice * item.quantity;
-
-
-        totalValue += 
-        item.currentPrice * item.quantity;
-
-
-    });
-
-
-
-    let profit =
-    totalValue - totalCost;
-
-
-
-    let rate = 0;
-
-
-    if(totalCost > 0){
-
-        rate =
-        ((profit / totalCost) * 100)
-        .toFixed(2);
-
-    }
-
-
-
-    return {
-
-
-        cost: totalCost,
-
-
-        value: totalValue,
-
-
-        profit: profit,
-
-
-        rate: rate + "%",
-
-
-        count: records.length
-
-
-    };
-
-
-}
-
-
-
-
-
 function renderDashboard(){
 
 
-    let box =
-    document.getElementById(
-        "dashboard"
-    );
+let box=document.getElementById("dashboard");
 
 
-    if(!box) return;
+if(!box)return;
 
 
-
-    let data =
-    getDashboardData();
+let data=getDashboardData();
 
 
 
-    box.innerHTML = `
+box.innerHTML=`
+
+<div class="dashboard">
 
 
-    <div class="card">
+<div class="stat">
+
+<h3>
+本金
+</h3>
+
+<p>
+¥${data.cost}
+</p>
+
+</div>
 
 
-    <h3>
-    📊 投资概览
-    </h3>
+
+<div class="stat">
+
+<h3>
+市值
+</h3>
+
+<p>
+¥${data.value}
+</p>
+
+</div>
 
 
-    <p>
-    投资本金：
-    ¥${data.cost}
-    </p>
+
+<div class="stat">
+
+<h3>
+盈亏
+</h3>
+
+<p>
+¥${data.profit}
+</p>
+
+</div>
 
 
-    <p>
-    当前市值：
-    ¥${data.value}
-    </p>
+
+<div class="stat">
+
+<h3>
+收益率
+</h3>
+
+<p>
+${data.rate}
+</p>
+
+</div>
 
 
-    <p>
-    盈亏：
-    ¥${data.profit}
-    </p>
 
+</div>
 
-    <p>
-    收益率：
-    ${data.rate}
-    </p>
-
-
-    <p>
-    记录次数：
-    ${data.count}
-    </p>
-
-
-    </div>
-
-
-    `;
-
+`;
 
 }
 
 
-window.addEventListener(
-"load",
-renderDashboard
-);
+
+window.onload=function(){
+
+renderDashboard();
+
+};
