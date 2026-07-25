@@ -1,56 +1,141 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>投资日记</title>
+
+<title>
+投资日记
+</title>
+
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="stylesheet" href="layout.css">
+
+<link rel="stylesheet" href="notion-diary.css">
+
+
 </head>
+
 
 
 <body>
 
 
-<h1 class="title">
-📖 我的投资日记
-</h1>
+<div class="app">
 
 
 
-<div class="container">
+<!-- 左侧菜单 -->
 
 
-<div class="card">
+<aside class="sidebar">
 
 
-<h2>
-今天的投资复盘
+<div class="logo">
+
+📈 投资日记
+
+</div>
+
+
+
+<div class="menu">
+
+
+<a href="index.html">
+🏠 首页
+</a>
+
+
+<a href="index.html">
+📊 投资分析
+</a>
+
+
+<a href="diary.html">
+📖 投资日记
+</a>
+
+
+<a href="mistake.html">
+❌ 错题本
+</a>
+
+
+<a href="review.html">
+🧠 AI复盘
+</a>
+
+
+</div>
+
+
+</aside>
+
+
+
+
+
+
+<!-- 主内容 -->
+
+
+<main class="main">
+
+
+
+<div class="page-title">
+
+📖 今日投资日记
+
+</div>
+
+
+<div class="subtitle">
+
+记录想法，而不是记录价格
+
+</div>
+
+
+
+
+
+<div class="notion-box">
+
+
+<h2 class="notion-title">
+
+今天的市场
+
 </h2>
 
 
 
-<input 
-id="diaryTitle"
-placeholder="今天的主题，例如：市场大跌后的思考">
+
+<div>
 
 
-
-<textarea
-id="diaryContent"
-placeholder="记录你的投资想法、判断、情绪...">
-</textarea>
+<span class="tag active">
+上涨
+</span>
 
 
+<span class="tag">
+震荡
+</span>
 
-<button onclick="addDiary()">
-保存日记
-</button>
+
+<span class="tag">
+下跌
+</span>
 
 
 </div>
@@ -59,11 +144,149 @@ placeholder="记录你的投资想法、判断、情绪...">
 
 
 
-<div class="card">
+
+<h3>
+
+今日情绪
+
+</h3>
 
 
-<h2>
-历史日记
+<div class="emoji">
+
+😊 😐 😰 🔥
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="notion-box">
+
+
+<h2 class="notion-title">
+
+投资观察
+
+</h2>
+
+
+
+<textarea
+id="diaryContent"
+placeholder="
+今天市场发生了什么？
+
+你的判断是什么？
+">
+
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="notion-box">
+
+
+<h2 class="notion-title">
+
+交易记录
+
+</h2>
+
+
+<input
+id="diaryTitle"
+placeholder="
+例如：买入腾讯">
+
+
+
+
+<textarea
+placeholder="
+为什么买？
+
+计划是什么？
+">
+
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="notion-box">
+
+
+<h2 class="notion-title">
+
+错误反思
+
+</h2>
+
+
+
+<textarea
+placeholder="
+今天哪里做得不好？
+">
+
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<button onclick="addDiary()">
+
+保存今日复盘
+
+</button>
+
+
+
+
+
+
+
+
+<div class="notion-box">
+
+
+<h2 class="notion-title">
+
+历史记录
+
 </h2>
 
 
@@ -75,13 +298,24 @@ placeholder="记录你的投资想法、判断、情绪...">
 </div>
 
 
+
+
+
+
+</main>
+
+
 </div>
+
+
 
 
 
 <script src="diary.js"></script>
 
 
+
 </body>
+
 
 </html>
