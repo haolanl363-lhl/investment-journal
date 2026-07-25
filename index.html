@@ -2,56 +2,96 @@
 <html lang="zh-CN">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>我的投资记录</title>
+<title>投资日记</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
+
 <h1 class="title">
-我的投资记录
+📈 我的投资日记
 </h1>
+
 
 
 <div class="container">
 
+
 <div class="card">
 
-<div class="welcome">
-欢迎使用我的投资记录系统
-</div>
-
-
-<div class="status">
 
 <h2>
-📈 今日投资状态
+新增投资记录
 </h2>
 
 
-<p>
-欢迎开始记录你的投资复盘。
-</p>
+<input id="stock"
+placeholder="股票名称">
 
 
-<button onclick="showMessage()">
-开始记录
+<input id="buyPrice"
+placeholder="买入价格">
+
+
+<input id="currentPrice"
+placeholder="当前价格">
+
+
+<input id="quantity"
+placeholder="买入数量">
+
+
+<button onclick="addInvestment()">
+保存记录
 </button>
 
 
 </div>
 
-</div>
+
+
+
+
+<div class="card">
+
+
+<h2>
+我的持仓
+</h2>
+
+
+<div id="records">
 
 </div>
 
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="data.js"></script>
+
+<script src="calculator.js"></script>
+
+<script src="storage.js"></script>
 
 <script src="app.js"></script>
+
+
 
 </body>
 
