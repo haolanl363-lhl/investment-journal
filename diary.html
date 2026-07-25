@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>投资日记</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<h1 class="title">
+📖 我的投资日记
+</h1>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<h2>
+今天的投资复盘
+</h2>
+
+
+
+<input 
+id="diaryTitle"
+placeholder="今天的主题，例如：市场大跌后的思考">
+
+
+
+<textarea
+id="diaryContent"
+placeholder="记录你的投资想法、判断、情绪...">
+</textarea>
+
+
+
+<button onclick="addDiary()">
+保存日记
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+历史日记
+</h2>
+
+
+<div id="diaries">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script src="diary.js"></script>
+
+
+</body>
+
+</html>
