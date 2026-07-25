@@ -4,10 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>投资日记</title>
+<title>投资日记 Pro</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,41 +16,52 @@
 <body>
 
 
-<h1 class="title">
-📈 我的投资日记
+<header>
+
+<h1>
+📈 投资日记 Pro
 </h1>
+
+<p>
+记录 · 复盘 · 成长
+</p>
+
+</header>
 
 
 
 <div class="container">
 
 
-<div class="card">
+<!-- 数据仪表盘 -->
 
+<div id="dashboard"></div>
+
+
+
+<!-- 添加投资 -->
+
+<div class="card">
 
 <h2>
 新增投资记录
 </h2>
 
 
-<input id="stock"
-placeholder="股票名称">
+<input id="stock" placeholder="股票名称">
 
 
-<input id="buyPrice"
-placeholder="买入价格">
+<input id="buyPrice" placeholder="买入价格">
 
 
-<input id="currentPrice"
-placeholder="当前价格">
+<input id="currentPrice" placeholder="当前价格">
 
 
-<input id="quantity"
-placeholder="买入数量">
+<input id="quantity" placeholder="数量">
 
 
 <button onclick="addInvestment()">
-保存记录
+保存投资
 </button>
 
 
@@ -61,20 +71,39 @@ placeholder="买入数量">
 
 
 
-<div class="card">
+<!-- 持仓 -->
 
+<div class="card">
 
 <h2>
 我的持仓
 </h2>
 
 
-<div id="records">
-
-</div>
+<div id="records"></div>
 
 
 </div>
+
+
+
+
+
+<div class="nav">
+
+
+<a href="diary.html">
+📖 投资日记
+</a>
+
+
+<a href="mistake.html">
+❌ 错题本
+</a>
+
+
+</div>
+
 
 
 </div>
@@ -89,8 +118,9 @@ placeholder="买入数量">
 
 <script src="storage.js"></script>
 
-<script src="app.js"></script>
+<script src="dashboard.js"></script>
 
+<script src="app.js"></script>
 
 
 </body>
