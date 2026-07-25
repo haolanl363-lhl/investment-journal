@@ -4,16 +4,21 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>投资日记 Pro</title>
 
+
 <link rel="stylesheet" href="style.css">
+
 
 </head>
 
 
+
 <body>
+
 
 
 <header>
@@ -22,87 +27,195 @@
 📈 投资日记 Pro
 </h1>
 
+
 <p>
-记录 · 复盘 · 成长
+记录 · 分析 · 复盘 · 成长
 </p>
 
+
 </header>
+
+
 
 
 
 <div class="container">
 
 
+
+
+
 <!-- 数据仪表盘 -->
 
-<div id="dashboard"></div>
+<div class="card">
+
+<h2>
+📊 投资概览
+</h2>
+
+
+<div id="dashboard">
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- 收益曲线 -->
+
+<div class="card">
+
+
+<h2>
+📈 收益趋势
+</h2>
+
+
+<canvas id="profitChart">
+
+</canvas>
+
+
+</div>
+
+
+
+
+
+
+<!-- K线 -->
+
+<div class="card">
+
+
+<h2>
+📊 模拟K线
+</h2>
+
+
+<canvas id="kChart">
+
+</canvas>
+
+
+</div>
+
+
+
+
 
 
 
 <!-- 添加投资 -->
 
+
 <div class="card">
 
+
 <h2>
-新增投资记录
+➕ 新增投资记录
 </h2>
 
 
-<input id="stock" placeholder="股票名称">
+
+<input 
+id="stock"
+placeholder="股票名称">
 
 
-<input id="buyPrice" placeholder="买入价格">
+
+<input 
+id="buyPrice"
+placeholder="买入价格">
 
 
-<input id="currentPrice" placeholder="当前价格">
+
+<input 
+id="currentPrice"
+placeholder="当前价格">
 
 
-<input id="quantity" placeholder="数量">
+
+<input 
+id="quantity"
+placeholder="买入数量">
+
 
 
 <button onclick="addInvestment()">
+
 保存投资
+
 </button>
 
 
+
 </div>
 
 
 
 
 
-<!-- 持仓 -->
+
+
+
+<!-- 持仓记录 -->
+
 
 <div class="card">
 
+
 <h2>
-我的持仓
+📂 我的持仓
 </h2>
 
 
-<div id="records"></div>
+
+<div id="records">
+
+</div>
 
 
 </div>
 
 
 
+
+
+
+
+<!-- 功能入口 -->
 
 
 <div class="nav">
 
 
 <a href="diary.html">
+
 📖 投资日记
+
 </a>
+
 
 
 <a href="mistake.html">
+
 ❌ 错题本
+
 </a>
 
 
-</div>
+
+<a href="review.html">
+
+🧠 AI复盘
+
+</a>
 
 
 
@@ -110,19 +223,54 @@
 
 
 
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 数据模块 -->
 
 
 <script src="data.js"></script>
 
+
 <script src="calculator.js"></script>
+
 
 <script src="storage.js"></script>
 
+
+
+
+
+<!-- 图表库 -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+
+<!-- 功能 -->
+
 <script src="dashboard.js"></script>
+
+
+<script src="chart.js"></script>
+
 
 <script src="app.js"></script>
 
 
+
 </body>
+
 
 </html>
