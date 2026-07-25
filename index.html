@@ -2,18 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-投资日记
-</title>
-
+<title>投资日记</title>
 
 <link rel="stylesheet" href="style.css">
-
 
 </head>
 
@@ -21,74 +15,61 @@
 <body>
 
 
-<!-- 左侧抽屉菜单 -->
-
-<div id="drawer" class="drawer">
-
-
-<h2>
-📈 投资日记
-</h2>
+<!-- 左侧菜单 -->
+<div id="mask" onclick="closeMenu()"></div>
 
 
-<div class="menu-item" onclick="showPage('home')">
-🏠 首页
+<div id="sidebar">
+
+    <div class="logo">
+        📈 投资日记
+    </div>
+
+
+    <div class="menu-item" onclick="showPage('home')">
+        🏠 首页
+    </div>
+
+
+    <div class="menu-item" onclick="showPage('analysis')">
+        📊 投资分析
+    </div>
+
+
+    <div class="menu-item" onclick="showPage('diary')">
+        📖 投资日记
+    </div>
+
+
+    <div class="menu-item" onclick="showPage('wrong')">
+        ❌ 错题本
+    </div>
+
+
+    <div class="menu-item" onclick="showPage('ai')">
+        🧠 AI复盘
+    </div>
+
+
 </div>
 
 
-<div class="menu-item" onclick="showPage('analysis')">
-📊 投资分析
-</div>
 
 
-<div class="menu-item" onclick="showPage('diary')">
-📖 投资日记
-</div>
+<!-- 主区域 -->
 
-
-<div class="menu-item" onclick="showPage('mistake')">
-❌ 错题本
-</div>
-
-
-<div class="menu-item" onclick="showPage('ai')">
-🧠 AI复盘
-</div>
-
-
-</div>
-
-
-
-
-<!-- 遮罩 -->
-
-<div id="mask"></div>
-
-
-
-
-
-<!-- 主页面 -->
-
-
-<div class="main">
+<div id="main">
 
 
 <header>
 
-
-<button 
-class="menu-btn"
-onclick="openMenu()">
-
+<button id="menuBtn" onclick="openMenu()">
 ☰
-
 </button>
 
 
 <h1>
-投资日记
+📈 投资日记
 </h1>
 
 
@@ -96,12 +77,7 @@ onclick="openMenu()">
 
 
 
-<!-- 内容区域 -->
-
-<div id="app">
-
-
-</div>
+<div id="app"></div>
 
 
 
@@ -114,6 +90,5 @@ onclick="openMenu()">
 
 
 </body>
-
 
 </html>
