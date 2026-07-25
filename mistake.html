@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>投资错题本</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<h1 class="title">
+❌ 投资错题本
+</h1>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<h2>
+记录一次错误
+</h2>
+
+
+
+<input 
+id="mistakeTitle"
+placeholder="错误标题，例如：追高买入">
+
+
+
+<textarea
+id="mistakeReason"
+placeholder="当时为什么犯错？">
+</textarea>
+
+
+
+<textarea
+id="mistakeLesson"
+placeholder="以后如何避免？">
+</textarea>
+
+
+
+<button onclick="addMistake()">
+保存错误
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+历史错误
+</h2>
+
+
+<div id="mistakes">
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<script src="mistake.js"></script>
+
+
+</body>
+
+</html>
